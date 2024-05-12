@@ -1,0 +1,157 @@
+.divPrincipal {
+    position: relative;
+    height:100vh;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-image: linear-gradient(rgb(32, 32, 32), black)
+}
+
+.h1Title {
+    user-select:none;
+    margin-bottom:10px;
+    color:white;
+    font-size:60px;
+    animation: h1Etp1, h1Etp2, h1Etp3;
+    animation-duration: 0.4s, 0.4s, 0.4s;
+    animation-delay: 0s, 0.4s, 0.8s;
+}
+
+@keyframes h1Etp1 {
+    from {
+        font-size:60px;
+        rotate: 0deg;
+    }
+    to {
+        font-size:65px;
+        rotate: -2deg;
+    }
+}
+
+@keyframes h1Etp2 {
+    from {
+        font-size:65px;
+        rotate: -2deg;
+    }
+    to {
+        font-size:65px;
+        rotate: 2deg;
+    }
+}
+
+@keyframes h1Etp3 {
+    from {
+        font-size:65px;
+        rotate: 2deg;
+    }
+    to {
+        font-size:60px;
+        rotate: 0deg;
+    }
+}
+
+.divInput {
+    display:flex;
+    padding:5px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow:0px 5px 8px black;
+    z-index: 1;
+}
+
+.divInput input{
+    font-size:22px;
+    border:none;
+    outline:none;
+}
+
+.divInput input::placeholder {
+    user-select:none;
+}
+
+.divInput button{
+    background-color: transparent;
+    border:none;
+    cursor:pointer;
+    transition: transform 0.3s;
+}
+
+.divInput button:hover {
+    transform:scale(1.2)
+}
+
+.main {
+    background-color: white;
+    margin-top:40px;
+    padding:20px;
+    border-radius:10px;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    box-shadow:0px 5px 8px black;
+    z-index: 0;
+    animation: fadeIn 1s;
+}
+
+@keyframes fadeIn {
+    from {
+        margin-top:-164px;
+        opacity:0;
+    }
+    to {
+        opacity:1;
+        margin-top:40px;
+    }
+}
+
+.main span {
+    margin:3px 0px;
+}
+
+.divContato {
+    user-select:none;
+    font-weight: bolder;
+    position:absolute;
+    bottom:0px;
+    text-align:center;
+    margin-bottom:10px;
+    bottom:0px;
+    color:rgb(52, 52, 52);
+    transition:transform 0.5s;
+}
+
+.divContato:hover {
+    transform:scale(1.1)   
+}
+
+.divContato a {
+    text-decoration: none;
+    color:rgb(83, 83, 83);
+}
+
+.divContato span {
+    margin:5px;
+    text-decoration: underline;
+    color:rgb(83, 83, 83);
+}
+
+@media only screen and (max-width:350px) {
+
+    .h1Title {
+        font-size:40px;
+    }
+
+    .divInput input {
+        font-size:15px;
+    }
+
+    .main {
+        padding:10px;
+    }
+
+    .main span {
+        font-size:12px;
+    }
+}
