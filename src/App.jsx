@@ -2,13 +2,27 @@ import { useState } from "react";
 import { FiSearch } from "react-icons/fi";
 import './style.css';
 
-import api from "./services/api";
+import api from "./services/Api";
 
 function App() {
   const [input, setInput] = useState('');
   const [cep, setCep] = useState({});
+  const [classe, setClasse] = useState('main');
+  const [showMain, setShowMain] = useState(false);
+
+  function handleInputChange(e){
+    const { value } = e.target;
+    setInput(value);
+    showMain && setClasse(prevClasse => prevClasse.includes('hide') ? prevClasse : `${prevClasse} hide`);
+
+    setTimeout(async () => {
+      setShowMain(false);
+    }, 900)
+  }
 
   async function handleSearch(){
+    setClasse('main');
+
     if(input === '') {
       alert("Preencha o campo de CEP")
       return;
@@ -21,6 +35,7 @@ function App() {
         setInput("");
         return;
       }
+      setShowMain(true);
       setCep(response.data);
       setInput("");
       console.log(response);
@@ -38,15 +53,15 @@ function App() {
       type="text" 
       placeholder="Digite seu CEP..." 
       value={input}
-      onChange={(e)=>setInput(e.target.value)}
+      onChange={handleInputChange}
       />
       <button className="buttonSearch" onClick={handleSearch}>
       <FiSearch size={25} color="black"/>
       </button>
     </div>
 
-    {Object.keys(cep).length > 0 && (
-          <main className="main">
+    {showMain && Object.keys(cep).length > 0 && (
+          <main className={classe}>
           <h2>CEP: {cep.cep}</h2>
           <span>{cep.logradouro}</span>
           <span>Complemento: {cep.complemento}</span>
