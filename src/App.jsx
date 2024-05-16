@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { FiSearch } from "react-icons/fi";
-import './style.css';
+import './app.css';
 
 import api from "./services/Api";
+import Contato from "./components/Contato";
 
 function App() {
   const [input, setInput] = useState('');
@@ -16,7 +17,7 @@ function App() {
     showMain && setClasse(prevClasse => prevClasse.includes('hide') ? prevClasse : `${prevClasse} hide`);
 
     setTimeout(async () => {
-      setShowMain(false);
+      showMain && setShowMain(false);
     }, 900)
   }
 
@@ -55,13 +56,13 @@ function App() {
       value={input}
       onChange={handleInputChange}
       />
-      <button className="buttonSearch" onClick={handleSearch}>
+      <button className="buttonSearch" onClick={() => !showMain && handleSearch()}>
       <FiSearch size={25} color="black"/>
       </button>
     </div>
 
     {showMain && Object.keys(cep).length > 0 && (
-          <main className={classe}>
+        <main className={classe}>
           <h2>CEP: {cep.cep}</h2>
           <span>{cep.logradouro}</span>
           <span>Complemento: {cep.complemento}</span>
@@ -69,13 +70,7 @@ function App() {
           <span>{cep.localidade} - {cep.uf}</span>
         </main>
     )}
-
-    <div className="divContato">
-        <p>Site feito por Daniel Holanda</p>
-        <span><a target="_blank" href="https://linkedin.com/in/daniel-holanda-campos/">LinkedIn</a></span>
-        <span>|</span>
-        <span><a target="_blank" href="https://github.com/dholandac/">Github</a></span>
-    </div>
+    <Contato/>
   </div>
   );
 }
